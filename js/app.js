@@ -87,6 +87,7 @@ async function incrementSecs(secs){
 
 function decrementSecs(){
     let secs = document.getElementById('seconds').innerHTML;
+    let secHand = document.getElementById('analog-clock-sec-hand');
     if(secs > 0){
         secs--;
         var formattedNum =('0' + secs).slice(-2);
@@ -97,6 +98,7 @@ function decrementSecs(){
         document.getElementById('seconds').innerHTML = formattedNum;
         decrementMins();
     }
+    secHand.style.transform = 'rotate(' + 6*secs + 'deg)';
 }
 
 async function incrementMins(mins){
@@ -114,6 +116,7 @@ async function incrementMins(mins){
 
 function decrementMins(){
     let mins = document.getElementById('minutes').innerHTML;
+    let minHand = document.getElementById('analog-clock-min-hand');
     if(mins > 0){
         mins--;
         var formattedNum =('0' + mins).slice(-2);
@@ -124,6 +127,7 @@ function decrementMins(){
         document.getElementById('minutes').innerHTML = formattedNum;
         decrementHrs();
     }
+    minHand.style.transform = 'rotate(' + 6*mins + 'deg)';
 }
 
 async function incrementHrs(hrs){
@@ -148,6 +152,7 @@ async function incrementHrs(hrs){
 
 function decrementHrs(){
     let hrs = document.getElementById('hours').innerHTML;
+    let hrHand = document.getElementById('analog-clock-hr-hand');
     if(hrs > 1){
         hrs--;
         var formattedNum =('0' + hrs).slice(-2);
@@ -165,6 +170,7 @@ function decrementHrs(){
             document.getElementById('meridiem').innerHTML = meridiem;
         }
     }
+    hrHand.style.transform = 'rotate(' + 30*hrs + 'deg)';
 }
 
 //resets clock to 12:00:00pm
@@ -254,6 +260,7 @@ function changeSecond(id){
 
 function incSec(){
     let sec = document.getElementById('seconds').innerHTML;
+    let secHand = document.getElementById('analog-clock-sec-hand');
     if(sec < 59){
         sec++;
         var formattedNum =('0' + sec).slice(-2);
@@ -264,10 +271,12 @@ function incSec(){
         document.getElementById('seconds').innerHTML = formattedNum;
         incMin();
     }
+    secHand.style.transform = 'rotate(' + 6*sec + 'deg)';
 }
 
 function incMin(){
     let min = document.getElementById('minutes').innerHTML;
+    let minHand = document.getElementById('analog-clock-min-hand');
     if(min < 59){
         min++;
         var formattedNum =('0' + min).slice(-2);
@@ -279,10 +288,12 @@ function incMin(){
         incHr();
 
     }
+    minHand.style.transform = 'rotate(' + 6*min + 'deg)';
 }
 
 function incHr(){
     let hr = document.getElementById('hours').innerHTML;
+    let hrHand = document.getElementById('analog-clock-hr-hand');
     if(hr < 12){
         hr++
         var formattedNum =('0' + hr).slice(-2);
@@ -300,4 +311,5 @@ function incHr(){
             document.getElementById('meridiem').innerHTML = meridiem;
         }
     }
+    hrHand.style.transform = 'rotate(' + 30*hr + 'deg)';
 }

@@ -163,21 +163,19 @@ body{
     width: 8px;
     height: 80px;
     transform-origin: bottom;
-    transform: rotate(45deg);
 }
 #analog-clock-min-hand{
     position: absolute;
-    top: 17%;
+    top: 18%;
     left: 53%;
     background-color: black;
     width: 5px;
     height: 100px;
     transform-origin: bottom;
-    transform: rotate(180deg);
 }
 #analog-clock-sec-hand{
     position: absolute;
-    top: 9%;
+    top: 8%;
     left: 53%;
     background-color: black;
     width: 3px;
