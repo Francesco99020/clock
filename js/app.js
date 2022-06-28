@@ -15,6 +15,9 @@ async function runClock(){
     mins = parseInt(mins);
     let hrs = document.getElementById('hours').innerHTML;
     hrs = parseInt(hrs);
+    let hrHand = document.getElementById('analog-clock-hr-hand');
+    let minHand = document.getElementById('analog-clock-min-hand');
+    let secHand = document.getElementById('analog-clock-sec-hand');
 
     //sets boolean values for clock control actions
     let reset = false;
@@ -49,16 +52,16 @@ async function runClock(){
             console.log('stop was clicked');
             break;
         }
-        incrementSecs(secs, true);
+        incrementSecs(secs, secHand);
         secs = document.getElementById('seconds').innerHTML;
         secs = parseInt(secs);
         if(secs == 59){
-            incrementMins(mins, true);
+            incrementMins(mins, minHand);
             mins = document.getElementById('minutes').innerHTML;
             mins = parseInt(mins);
         }
         if(secs == 59 && mins == 59){
-            incrementHrs(hrs, true);
+            incrementHrs(hrs, hrHand);
             hrs = document.getElementById('hours').innerHTML;
             hrs = parseInt(hrs, meridiem);
         }
@@ -73,7 +76,7 @@ function delay(time){
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
-async function incrementSecs(secs){
+async function incrementSecs(secs, secHand){
     if(secs < 59){
         secs++;
         var formattedNum =('0' + secs).slice(-2);
@@ -83,6 +86,7 @@ async function incrementSecs(secs){
         var formattedNum =('0' + secs).slice(-2);
         document.getElementById('seconds').innerHTML = formattedNum;
     }
+    secHand.style.transform = 'rotate(' + 6*secs + 'deg)';
 }
 
 function decrementSecs(){
@@ -101,7 +105,7 @@ function decrementSecs(){
     secHand.style.transform = 'rotate(' + 6*secs + 'deg)';
 }
 
-async function incrementMins(mins){
+async function incrementMins(mins, minHand){
     await delay(1000);
     if(mins < 59){
         mins++;
@@ -112,6 +116,7 @@ async function incrementMins(mins){
             var formattedNum =('0' + mins).slice(-2);
             document.getElementById('minutes').innerHTML = formattedNum;
         }
+        minHand.style.transform = 'rotate(' + 6*mins + 'deg)';
 }
 
 function decrementMins(){
@@ -130,7 +135,7 @@ function decrementMins(){
     minHand.style.transform = 'rotate(' + 6*mins + 'deg)';
 }
 
-async function incrementHrs(hrs){
+async function incrementHrs(hrs, hrHand){
        await delay(1000);
     if(hrs < 12){
         hrs++;
@@ -148,6 +153,7 @@ async function incrementHrs(hrs){
         }
         document.getElementById('hours').innerHTML = formattedNum;
     }
+    hrHand.style.transform = 'rotate(' + 30*hrs + 'deg)';
 }
 
 function decrementHrs(){
@@ -180,6 +186,9 @@ async function resetClock(){
     document.getElementById('minutes').innerHTML = '0' + 0;
     document.getElementById('seconds').innerHTML = '0' + 0;
     document.getElementById('meridiem').innerHTML = 'pm';
+    document.getElementById('analog-clock-hr-hand').style.transform = "rotate(0deg)";
+    document.getElementById('analog-clock-min-hand').style.transform = "rotate(0deg)";
+    document.getElementById('analog-clock-sec-hand').style.transform = "rotate(0deg)";
 
     document.getElementById('reset').disabled = true;
 }
