@@ -201,7 +201,7 @@ button:disabled:hover{
 #analog-clock-sec-hand{
     position: absolute;
     top: 8%;
-    left: 53%;
+    left: 54%;
     background-color: black;
     width: 3px;
     height: 130px;
